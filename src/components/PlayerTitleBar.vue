@@ -11,14 +11,14 @@
           <v-list-item-title>About</v-list-item-title>
         </v-list-item>
         <v-dialog v-model="dialog" max-width="300">
-            <v-card>
-              <v-card-title><h2>Vue Music Player</h2></v-card-title>
-                <v-card-text>Version 3.0.0</v-card-text>        
-                <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn text @click="dialog = false">OK</v-btn>
-              </v-card-actions>
-            </v-card>
+          <v-card>
+            <v-card-title><h2>Vue Music Player</h2></v-card-title>
+            <v-card-text>Version 3.0.0</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn text @click="dialog = false">OK</v-btn>
+            </v-card-actions>
+          </v-card>
         </v-dialog>
       </v-list>
     </v-menu>
@@ -32,12 +32,11 @@
 </template>
 
 <script>
-export default {
-  name: 'Player',
-  data () {
-    return {
-      dialog: false,
-    }
-  },
-};
+  export default {
+    data () {
+      return {
+        dialog: false
+      }
+    },
+  }
 </script>
