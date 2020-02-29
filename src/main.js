@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import vuetify from './plugins/vuetify';
-import App from './App.vue'
-import {Howl, Howler} from 'howler';
+import Player from './Player.vue'
+// import {Howl, Howler} from 'howler';
 
 Vue.config.productionTip = false
+// const {Howl, Howler} = require('howler');
+// Vue.use(Howl, Howler)
+
 
 
 new Vue({
   vuetify,
-  render: h => h(App)
+  render: h => h(Player)
 }).$mount('#app')

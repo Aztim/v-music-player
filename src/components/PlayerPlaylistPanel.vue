@@ -6,7 +6,7 @@
         :key="track.title"
         v-show="track.display">
         <v-list-item-content>
-          <v-list-item-title>{{ index }} {{ track.artist }} - {{ track.title }}</v-list-item-title>
+          <v-list-item-title>{{ index | numbers }} {{ track.artist }} - {{ track.title }}</v-list-item-title>
         </v-list-item-content>
         <v-spacer></v-spacer>
         {{ track.howl.duration() }}
@@ -18,7 +18,17 @@
 <script> 
   export default {
     props: {
-      playlist: Array
+      playlist: [Array]
+    },
+    // props: ['playlist'],
+    filters: {
+      numbers: (value) => {
+        let number = value + 1
+        if (number < 10) {
+          return "0" + number + "."
+        } 
+        return number + "."
+      }
     }
   }
 </script>
