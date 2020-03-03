@@ -3,7 +3,9 @@
     <v-content>
       <v-container> 
         <PlayerTitleBar/>
-        <PlayerInfoPanel/>
+        <PlayerInfoPanel
+          :trackInfo="getTrackInfo"
+        />
         <PlayerControlsBars
           :loop="loop"
           :shuffle="shuffle"
