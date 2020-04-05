@@ -23,18 +23,22 @@
           :selectedTrack="selectedTrack"
           @selecttrack="selectTrack"
           @playtrack="play"
-        /> 
+        />
+        <PlayerSearchBar
+          :playlist="playlist"
+        />
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import PlayerTitleBar from './components/PlayerTitleBar.vue'
-import PlayerPlaylistPanel from './components/PlayerPlaylistPanel.vue'
-import PlayerControlsBars from './components/PlayerControlsBars.vue'
-import PlayerInfoPanel from './components/PlayerInfoPanel.vue'
-const {Howl} = require('howler');
+import PlayerTitleBar from './components/v-player-title-bar'
+import PlayerPlaylistPanel from './components/v-player-playlist-panel'
+import PlayerControlsBars from './components/v-player-controls-bars'
+import PlayerInfoPanel from './components/v-player-Info-panel'
+import PlayerSearchBar from './components/v-player-search-bar'
+import {Howl} from 'howler';
 
 export default {
   name: 'Player',
@@ -43,24 +47,40 @@ export default {
    PlayerTitleBar,
    PlayerPlaylistPanel,
    PlayerControlsBars,
-   PlayerInfoPanel
-   
+   PlayerInfoPanel,
+   PlayerSearchBar
   },
 
-  data: () => ({
-      playlist: [
-        {title: "Star Wars (Main Theme)", artist: "Jhon Williams", howl: null, display: true},
+  // data: () => ({
+  //     playlist: [
+  //       {title: "Star Wars (Main Theme)", artist: "Jhon Williams", howl: null, display: true},
+  //       {title: "Star Wars (The Imperial March)", artist: "Jhon Williams", howl: null, display: true},
+  //       {title: "Simpsons", artist: "Simpsons", howl: null, display: true},
+  //       {title: "Stayin Alive", artist: "Bee Gees", howl: null, display: true}
+  //     ],
+  //     selectedTrack: null,
+  //     index: 0,
+  //     playing: false,
+  //     loop: false,
+  //     shuffle: false,
+  //     seek: 0
+  // }),
+  data () {
+      return {
+        playlist: [
+         {title: "Star Wars (Main Theme)", artist: "Jhon Williams", howl: null, display: true},
         {title: "Star Wars (The Imperial March)", artist: "Jhon Williams", howl: null, display: true},
         {title: "Simpsons", artist: "Simpsons", howl: null, display: true},
         {title: "Stayin Alive", artist: "Bee Gees", howl: null, display: true}
-      ],
-      selectedTrack: null,
-      index: 0,
-      playing: false,
-      loop: false,
-      shuffle: false,
-      seek: 0
-  }),
+        ],
+        selectedTrack: null,
+        index: 0,
+        playing: false,
+        loop: false,
+        shuffle: false,
+        seek: 0
+      }
+    },
   computed: {
     currentTrack () {
       return this.playlist[this.index]
@@ -78,7 +98,7 @@ export default {
         artist,
         title,
         seek,
-        duration,
+        duration
       }
     }
   },
@@ -194,4 +214,5 @@ export default {
   }
 };
 </script>
+
 
