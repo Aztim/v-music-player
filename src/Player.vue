@@ -1,32 +1,22 @@
 <template>
   <v-app>
     <v-content>
-      <v-container> 
+      <v-container>
         <PlayerTitleBar/>
-        <PlayerInfoPanel
-          :trackInfo="getTrackInfo"
-        />
         <PlayerControlsBars
-          :loop="loop"
-          :shuffle="shuffle"
-          :progress="progress"
           @playtrack="play"
           @pausetrack="pause"
           @stoptrack="stop"
           @skiptrack="skip"
-          @toggleloop="toggleLoop"
-          @toggleshuffle="toggleShuffle"
-          @updateseek="setSeek"
         />
         <PlayerPlaylistPanel
           :playlist="playlist"
           :selectedTrack="selectedTrack"
-          @selecttrack="selectTrack"
+          @selectTrack="selectTrack"
           @playtrack="play"
         />
-        <PlayerSearchBar
-          :playlist="playlist"
-        />
+        <!-- <PlayerPlaylistPanel/>
+        <PlayerSearchBar/> -->
       </v-container>
     </v-content>
   </v-app>
@@ -36,128 +26,58 @@
 import PlayerTitleBar from './components/v-player-title-bar'
 import PlayerPlaylistPanel from './components/v-player-playlist-panel'
 import PlayerControlsBars from './components/v-player-controls-bars'
-import PlayerInfoPanel from './components/v-player-Info-panel'
-import PlayerSearchBar from './components/v-player-search-bar'
-import {Howl} from 'howler';
 
+import { Howl } from 'howler'
 export default {
-  name: 'Player',
+  name: 'App',
 
   components: {
-   PlayerTitleBar,
-   PlayerPlaylistPanel,
-   PlayerControlsBars,
-   PlayerInfoPanel,
-   PlayerSearchBar
+    PlayerTitleBar,
+    PlayerPlaylistPanel,
+    PlayerControlsBars
   },
 
-  // data: () => ({
-  //     playlist: [
-  //       {title: "Star Wars (Main Theme)", artist: "Jhon Williams", howl: null, display: true},
-  //       {title: "Star Wars (The Imperial March)", artist: "Jhon Williams", howl: null, display: true},
-  //       {title: "Simpsons", artist: "Simpsons", howl: null, display: true},
-  //       {title: "Stayin Alive", artist: "Bee Gees", howl: null, display: true}
-  //     ],
-  //     selectedTrack: null,
-  //     index: 0,
-  //     playing: false,
-  //     loop: false,
-  //     shuffle: false,
-  //     seek: 0
-  // }),
-  data () {
-      return {
-        playlist: [
-         {title: "Star Wars (Main Theme)", artist: "Jhon Williams", howl: null, display: true},
-        {title: "Star Wars (The Imperial March)", artist: "Jhon Williams", howl: null, display: true},
-        {title: "Simpsons", artist: "Simpsons", howl: null, display: true},
-        {title: "Stayin Alive", artist: "Bee Gees", howl: null, display: true}
-        ],
-        selectedTrack: null,
-        index: 0,
-        playing: false,
-        loop: false,
-        shuffle: false,
-        seek: 0
-      }
-    },
-  computed: {
-    currentTrack () {
-      return this.playlist[this.index]
-    },
-    progress () {
-      if (this.currentTrack.howl.duration() === 0) return 0
-      return this.seek / this.currentTrack.howl.duration()
-    },
-    getTrackInfo () {
-      let artist = this.currentTrack.artist,
-        title = this.currentTrack.title,
-        seek = this.seek,
-        duration = this.currentTrack.howl.duration()
-      return {
-        artist,
-        title,
-        seek,
-        duration
-      }
-    }
-  },
-  watch: {
-    playing(playing) {
-      this.seek = this.currentTrack.howl.seek()
-      let updateSeek
-      if (playing) {
-        updateSeek = setInterval(() => {
-          this.seek = this.currentTrack.howl.seek()
-        }, 250)
-      } else {
-        clearInterval(updateSeek)
-      }
-    },
-  },
+  data: () => ({
+    playlist: [
+      { title: 'Star Wars (Main Theme)', artist: 'Jhon Williams', howl: null, display: true },
+      { title: 'Star Wars (The Imperial March)', artist: 'Jhon Williams', howl: null, display: true },
+      { title: 'Simpsons', artist: 'Simpsons', howl: null, display: true },
+      { title: 'Bee Gees Stayin Alive', artist: 'Bee Gees', howl: null, display: true }
+    ],
+    selectedTrack: null,
+    index: 0,
+    playing: false
+  }),
   created: function () {
-      this.playlist.forEach( (track) => {
-        let file = track.title.replace(/\s/g, "_")
-        track.howl = new Howl({
-        src: [`./playlist/${file}.mp3`],
-        onend: () => {
-          if (this.loop) {
-            this.play(this.index)
-          } else {
-            this.skip('next')
-          }
-        }
+    this.playlist.forEach((track) => {
+      const file = track.title.replace(/\s/g, '_')
+      track.howl = new Howl({
+        src: [`${file}.mp3`]
       })
-    }),
-     this.$vuetify.theme.dark = true
+    })
   },
   methods: {
     selectTrack (track) {
       this.selectedTrack = track
     },
     play (index) {
-      let selectedTrackIndex = this.playlist.findIndex(track => track === this.selectedTrack)
-    
+      const selectedTrackIndex = this.playlist.findIndex(track => track === this.selectedTrack)
       if (typeof index === 'number') {
-          // index = index
-          
-          index
-      } 
-      else if (this.selectedTrack) {
-        if (this.selectedTrack != this.currentTrack) {
-            this.stop()
-          }
-          index = selectedTrackIndex
-        } else {
-          index = this.index
-      }
-      let track = this.playlist[index].howl
-       if (track.playing()) {
-          return
-        } else {
-          track.play()
+        // index = index
+      } else if (this.selectedTrack) {
+        if (this.selectedTrack !== this.currentTrack) {
+          this.stop()
         }
-      
+        index = selectedTrackIndex
+      } else {
+        index = this.index
+      }
+      const track = this.playlist[index].howl
+      if (track.playing()) {
+        return
+      } else {
+        track.play()
+      }
       this.selectedTrack = this.playlist[index]
       this.playing = true
       this.index = index
@@ -171,25 +91,18 @@ export default {
       this.playing = false
     },
     skip (direction) {
-      let index = 0,
-      lastIndex = this.playlist.length - 1
-
-      if (this.shuffle) {
-          index = Math.round(Math.random() * lastIndex)
-          while (index === this.index) {
-            index = Math.round(Math.random() * lastIndex)
-          }
-        } else if (direction === "next") {
-          index = this.index + 1
-          if (index >= this.playlist.length) {
-            index = 0
-          }
-        } else {
-          index = this.index - 1
-          if (index < 0) {
-            index = this.playlist.length - 1
-          }
+      let index = 0
+      if (direction === 'next') {
+        index = this.index + 1
+        if (index >= this.playlist.length) {
+          index = 0
         }
+      } else {
+        index = this.index - 1
+        if (index < 0) {
+          index = this.playlist.length - 1
+        }
+      }
       this.skipTo(index)
     },
     skipTo (index) {
@@ -197,22 +110,21 @@ export default {
         this.currentTrack.howl.stop()
       }
       this.play(index)
-    },
-    toggleLoop (value) {
-      this.loop = value
-    },
-    toggleShuffle (value) {
-      this.shuffle = value
-    },
-    setSeek (percents) {
-      let track = this.currentTrack.howl
-    
-      if (track.playing()) {
-        track.seek((track.duration() / 100) * percents)
-      }
+    }
+  },
+  computed: {
+    currentTrack () {
+      return this.playlist[this.index]
     }
   }
-};
+  // created: function () {
+  //   this.playlist.forEach((track) => {
+  //     const file = track.title.replace(/\s/g, '_')
+  //     track.howl = new Howl({
+  //       src: [file + '.mp3']
+  //     })
+  //     console.log(track.title + '.mp3')
+  //   })
+  // }
+}
 </script>
-
-

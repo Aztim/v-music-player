@@ -37,11 +37,11 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        dialog: false
-      }
-    },
+export default {
+  data () {
+    return {
+      dialog: false
+    }
   }
+}
 </script>

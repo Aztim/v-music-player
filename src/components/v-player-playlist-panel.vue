@@ -10,38 +10,37 @@
           <v-list-item-title>{{ index | numbers }} {{ track.artist }} - {{ track.title }}</v-list-item-title>
         </v-list-item-content>
         <v-spacer></v-spacer>
-        {{ track.howl.duration() }}
-       <!-- {{track.howl('load', function(){ track.howl.duration(); })}} -->
+        {{ track.howl.duration() | minutes }}
       </v-list-item>
     </v-list>
   </v-card>
 </template>
- 
-<script> 
-  export default {
-    props: {
-      playlist: Array,
-      selectedTrack: Object
-    },
-    // props: ['playlist'],
-    methods: {
-      selectTrack (track) {
-        this.$emit('selecttrack', track)
-      },
-      playTrack(index) {
-        this.$emit('playtrack', index)
+<script>
+export default {
+  props: {
+    playlist: {
+      type: Array,
+      default () {
+        return []
       }
-    } ,
-    filters: {
-      numbers: (value) => {
-        let number = value + 1
-        if (number < 10) {
-          return "0" + number + "."
-        } 
-        return number + "."
+    },
+    selectedTrack: {
+      type: Object,
+      default () {
+        return {}
       }
     }
+  },
+  methods: {
+    selectTrack (track) {
+      // console.log(track)
+      this.$emit('selectTrack', track)
+    },
+    playTrack (index) {
+      this.$emit('playtrack', index)
+    }
   }
+}
 </script>
 
 <style scoped>
@@ -49,7 +48,7 @@
     background-color: orange !important;
   }
   .even {
-    background-color: #505050
+    background-color: #DCDCDC
   }
   .playlist {
     overflow: auto
