@@ -3,20 +3,30 @@
     <v-content>
       <v-container>
         <PlayerTitleBar/>
+        <PlayerInfoPanel
+          :trackInfo="getTrackInfo"
+        />
         <PlayerControlsBars
+          :loop="loop"
+          :shuffle="shuffle"
+          :progress="progress"
           @playtrack="play"
           @pausetrack="pause"
           @stoptrack="stop"
           @skiptrack="skip"
+          @toggleloop="toggleLoop"
+          @toggleshuffle="toggleShuffle"
+          @updateseek="setSeek"
         />
         <PlayerPlaylistPanel
           :playlist="playlist"
           :selectedTrack="selectedTrack"
-          @selectTrack="selectTrack"
+          @selectTrack="select"
           @playtrack="play"
         />
-        <!-- <PlayerPlaylistPanel/>
-        <PlayerSearchBar/> -->
+        <PlayerSearchBar
+          :playlist="playlist"
+        />
       </v-container>
     </v-content>
   </v-app>
@@ -26,6 +36,8 @@
 import PlayerTitleBar from './components/v-player-title-bar'
 import PlayerPlaylistPanel from './components/v-player-playlist-panel'
 import PlayerControlsBars from './components/v-player-controls-bars'
+import PlayerInfoPanel from './components/v-player-info-panel'
+import PlayerSearchBar from './components/v-player-search-bar'
 
 import { Howl } from 'howler'
 export default {
@@ -34,30 +46,79 @@ export default {
   components: {
     PlayerTitleBar,
     PlayerPlaylistPanel,
-    PlayerControlsBars
+    PlayerControlsBars,
+    PlayerInfoPanel,
+    PlayerSearchBar
   },
 
   data: () => ({
     playlist: [
-      { title: 'Star Wars (Main Theme)', artist: 'Jhon Williams', howl: null, display: true },
-      { title: 'Star Wars (The Imperial March)', artist: 'Jhon Williams', howl: null, display: true },
+      { title: 'Star Wars(Main Theme)', artist: 'Jhon Williams', howl: null, display: true },
+      { title: 'Star Wars(The Imperial March)', artist: 'Jhon Williams', howl: null, display: true },
       { title: 'Simpsons', artist: 'Simpsons', howl: null, display: true },
-      { title: 'Bee Gees Stayin Alive', artist: 'Bee Gees', howl: null, display: true }
+      { title: 'Stayin Alive', artist: 'Bee Gees', howl: null, display: true },
+      { title: 'The Race', artist: 'Yello', howl: null, display: true },
+      { title: 'Ghostbusters (Ost Ghostbusters)', artist: 'Ray Parker Jr.', howl: null, display: true },
+      { title: 'The Godfather', artist: 'Nino Rota', howl: null, display: true }
     ],
     selectedTrack: null,
     index: 0,
-    playing: false
+    playing: false,
+    loop: false,
+    shuffle: false,
+    seek: 0
   }),
   created: function () {
     this.playlist.forEach((track) => {
       const file = track.title.replace(/\s/g, '_')
       track.howl = new Howl({
-        src: [`${file}.mp3`]
+        src: [`playlist/${file}.mp3`],
+        onend: () => {
+          if (this.loop) {
+            this.play(this.index)
+          } else {
+            this.skip('next')
+          }
+        }
       })
     })
   },
+  computed: {
+    currentTrack () {
+      return this.playlist[this.index]
+    },
+    progress () {
+      if (this.currentTrack.howl.duration() === 0) return 0
+      return this.seek / this.currentTrack.howl.duration()
+    },
+    getTrackInfo () {
+      const artist = this.currentTrack.artist
+      const title = this.currentTrack.title
+      const seek = this.seek
+      const duration = this.currentTrack.howl.duration()
+      return {
+        artist,
+        title,
+        seek,
+        duration
+      }
+    }
+  },
+  watch: {
+    playing (playing) {
+      this.seek = this.currentTrack.howl.seek()
+      let updateSeek
+      if (playing) {
+        updateSeek = setInterval(() => {
+          this.seek = this.currentTrack.howl.seek()
+        }, 250)
+      } else {
+        clearInterval(updateSeek)
+      }
+    }
+  },
   methods: {
-    selectTrack (track) {
+    select (track) {
       this.selectedTrack = track
     },
     play (index) {
@@ -92,7 +153,13 @@ export default {
     },
     skip (direction) {
       let index = 0
-      if (direction === 'next') {
+      const lastIndex = this.playlist.length - 1
+      if (this.shuffle) {
+        index = Math.round(Math.random() * lastIndex)
+        while (index === this.index) {
+          index = Math.round(Math.random() * lastIndex)
+        }
+      } else if (direction === 'next') {
         index = this.index + 1
         if (index >= this.playlist.length) {
           index = 0
@@ -110,21 +177,19 @@ export default {
         this.currentTrack.howl.stop()
       }
       this.play(index)
-    }
-  },
-  computed: {
-    currentTrack () {
-      return this.playlist[this.index]
+    },
+    toggleLoop (value) {
+      this.loop = value
+    },
+    toggleShuffle (value) {
+      this.shuffle = value
+    },
+    setSeek (percents) {
+      const track = this.currentTrack.howl
+      if (track.playing()) {
+        track.seek((track.duration() / 100) * percents)
+      }
     }
   }
-  // created: function () {
-  //   this.playlist.forEach((track) => {
-  //     const file = track.title.replace(/\s/g, '_')
-  //     track.howl = new Howl({
-  //       src: [file + '.mp3']
-  //     })
-  //     console.log(track.title + '.mp3')
-  //   })
-  // }
 }
 </script>
