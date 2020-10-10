@@ -226,3 +226,39 @@ export default {
   }
 }
 </script>
+
+
+<style>
+* {
+  -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+html {
+  background: #000000;
+}
+html, body, .container {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+    -moz-box-align: center;
+      -ms-flex-align: center;
+        align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     /* -moz-box-pack: center; */
+      -ms-flex-pack: center;
+      justify-content: center;
+}
+
+</style>
