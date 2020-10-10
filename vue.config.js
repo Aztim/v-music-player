@@ -3,3 +3,7 @@ module.exports = {
     "vuetify"
   ]
 }
+
+// module.exports = {
+//   lintOnSave: false
+// }
