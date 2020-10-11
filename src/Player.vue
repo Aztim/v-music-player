@@ -256,9 +256,23 @@ html, body, .container {
         align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-     /* -moz-box-pack: center; */
+     -moz-box-pack: center;
       -ms-flex-pack: center;
       justify-content: center;
+}
+
+.glow {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  background: -webkit-gradient(linear,left bottom, left top,from(#000000),to(#262626));
+  background: -webkit-linear-gradient(bottom,#000000,#262626);
+  background: -moz-linear-gradient(bottom,#000000,#262626);
+  background: -o-linear-gradient(bottom,#000000,#262626);
+  background: linear-gradient(0deg,#000000,#262626);
+  /* -webkit-border-radius: 50%; */
+    /* -moz-border-radius: 50%; */
+      /* border-radius: 50%; */
 }
 
 </style>
