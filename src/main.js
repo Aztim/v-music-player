@@ -3,6 +3,7 @@ import vuetify from './plugins/vuetify';
 import Player from './Player.vue'
 import numbersFilter from '@/filters/numbers.filter'
 import minutesFilter from '@/filters/minutes.filter'
+import '@/assets/css/app.css'
 
 // import { Howl, Howler } from 'howler'
 
