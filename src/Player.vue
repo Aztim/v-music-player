@@ -275,4 +275,39 @@ html, body, .container {
       /* border-radius: 50%; */
 }
 
+.glow::before, .glow::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background: -webkit-linear-gradient(45deg,#ff00ee,#0000ff,#00ff00,#ff0000,#ff00ee,#0000ff,#00ff00,#ffff00,#ff0000);
+    background: -moz-linear-gradient(45deg,#ff00ee,#0000ff,#00ff00,#ff0000,#ff00ee,#0000ff,#00ff00,#ffff00,#ff0000);
+    background: -o-linear-gradient(45deg,#ff00ee,#0000ff,#00ff00,#ff0000,#ff00ee,#0000ff,#00ff00,#ffff00,#ff0000);
+    background: linear-gradient(45deg,#ff00ee,#0000ff,#00ff00,#ff0000,#ff00ee,#0000ff,#00ff00,#ffff00,#ff0000);
+    -webkit-background-size: 400% 400%;
+       -moz-background-size: 400%;
+         -o-background-size: 400%;
+            background-size: 400%;
+    max-width: -webkit-calc(600px + 4px);
+    max-width: -moz-calc(600px + 4px);
+    max-width: calc(600px + 4px);
+    max-height: -webkit-calc(600px + 4px);
+    max-height: -moz-calc(600px + 4px);
+    max-height: calc(600px + 4px);
+    width: -webkit-calc(600px + 4px);
+    width: -moz-calc(600px + 4px);
+    width: calc(600px + 4px);
+    height: -webkit-calc(600px + 4px);
+    height: -moz-calc(600px + 4px);
+    height: calc(600px + 4px);
+    z-index: -1;
+    -webkit-animation: animate 20s linear infinite;
+      -moz-animation: animate 20s linear infinite;
+        -o-animation: animate 20s linear infinite;
+          animation: animate 20s linear infinite;
+    /* -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%; */
+  }
+
 </style>
