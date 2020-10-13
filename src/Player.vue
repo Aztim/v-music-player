@@ -3,7 +3,7 @@
     <div class="glow">
       <div class="text-container">
         <img src="favicon.ico" alt="">
-        <PlayerTitleBar/>
+        <!-- <PlayerTitleBar/> -->
           <br>
           <span class="text">Vue Music Player</span>
           <br>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import PlayerTitleBar from './components/v-player-title-bar'
+// import PlayerTitleBar from './components/v-player-title-bar'
 import PlayerPlaylistPanel from './components/v-player-playlist-panel'
 // import PlayerControlsBars from './components/v-player-controls-bars'
 // import PlayerInfoPanel from './components/v-player-info-panel'
@@ -78,7 +78,7 @@ export default {
   name: 'App',
 
   components: {
-    PlayerTitleBar,
+    // PlayerTitleBar,
     PlayerPlaylistPanel,
     // PlayerControlsBars,
     // PlayerInfoPanel,
