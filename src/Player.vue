@@ -5,7 +5,7 @@
         <img src="favicon.ico" alt="">
         <PlayerTitleBar/>
           <br>
-          <span class="text">Coding and Stuff</span>
+          <span class="text">Vue Music Player</span>
           <br>
           <div class="playback_controls">
             <button onclick="skip('back')"><i class="fa fa-fast-backward"></i></button>
