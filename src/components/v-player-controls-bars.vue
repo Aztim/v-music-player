@@ -1,6 +1,22 @@
 <template>
   <div>
-    <v-toolbar text height=90>
+    <div class="playback_controls">
+      <button @click="skipTrack('prev')"><i class="fa fa-fast-backward"></i></button>
+      <button @click="pauseTrack"><i class="fa fa-pause"></i></button>
+      <button @click="playTrack()"><i class="fa fa-play"></i></button>
+      <button @click="stopTrack"><i class="fa fa-stop"></i></button>
+      <button @click="skipTrack('next')"><i class="fa fa-fast-forward"></i></button>
+    </div>
+    <div class="volume_controls">
+      <button id="mute"  @click="toggleMute">
+        <i v-if="this.muted" class="fa fa-volume-up"></i>
+        <i v-else class="fa fa-volume-off"></i>
+      </button>
+      <input type="range" id="volume" v-model="volume" @input="updateVolume(volume)" max="1" step="0.1">
+    </div>
+    {{ this.volume * 100 + '%' }}
+  </div>
+    <!-- <v-toolbar text height=90>
       <v-btn text icon @click="toggleMute">
         <template v-if="!this.muted">
           <v-icon v-if="this.volume >= 0.5">mdi-volume-high</v-icon>
@@ -40,7 +56,7 @@
     <v-toolbar text height="40">
       <v-progress-linear height="40" :value="trackProgress" @click="updateSeek($event)" class="progress-linear__bar"></v-progress-linear>
     </v-toolbar>
-  </div>
+  </div> -->
 </template>
 
 <script>
