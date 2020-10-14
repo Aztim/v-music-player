@@ -3,9 +3,11 @@
     <div class="glow">
       <div class="text-container">
         <img src="favicon.ico" alt="">
-        <!-- <PlayerTitleBar/> -->
-          <br>
+          <!-- <br> -->
           <span class="text">Vue Music Player</span>
+          <!-- <PlayerInfoPanel
+          :trackInfo="getTrackInfo"
+          /> -->
           <br>
           <div class="playback_controls">
             <button onclick="skip('back')"><i class="fa fa-fast-backward"></i></button>
@@ -17,6 +19,9 @@
           <br>
           <div id="seekbar">
             <input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
+            <PlayerInfoPanel
+              :trackInfo="getTrackInfo"
+            />
           </div>
           <br>
           <div class="volume_controls">
@@ -69,7 +74,7 @@
 // import PlayerTitleBar from './components/v-player-title-bar'
 import PlayerPlaylistPanel from './components/v-player-playlist-panel'
 // import PlayerControlsBars from './components/v-player-controls-bars'
-// import PlayerInfoPanel from './components/v-player-info-panel'
+import PlayerInfoPanel from './components/v-player-info-panel'
 // import PlayerSearchBar from './components/v-player-search-bar'
 import './assets/css/app.css'
 
@@ -81,7 +86,7 @@ export default {
     // PlayerTitleBar,
     PlayerPlaylistPanel,
     // PlayerControlsBars,
-    // PlayerInfoPanel,
+    PlayerInfoPanel
     // PlayerSearchBar
   },
 
