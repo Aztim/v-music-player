@@ -9,8 +9,8 @@
     </div>
     <div class="volume_controls">
       <button id="mute"  @click="toggleMute">
-        <i v-if="this.muted" class="fa fa-volume-up"></i>
-        <i v-else class="fa fa-volume-off"></i>
+        <i v-if="this.muted" class="fa fa-volume-off"></i>
+        <i v-else class="fa fa-volume-up"></i>
       </button>
       <input type="range" id="volume" v-model="volume" @input="updateVolume(volume)" max="1" step="0.1">
     </div>
