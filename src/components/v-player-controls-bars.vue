@@ -9,12 +9,19 @@
     </div>
     <div class="volume_controls">
       <button id="mute"  @click="toggleMute">
-        <i v-if="this.muted" class="fa fa-volume-off"></i>
-        <i v-else class="fa fa-volume-up"></i>
+        <div v-if="!this.muted">
+          <i v-if="this.volume >= 0.5" class="fa fa-volume-up"></i>
+          <i v-else-if="this.volume > 0" class="fa fa-volume-down"></i>
+          <i v-else class="fa fa-volume-off"></i>
+        </div>
+        <i v-show="this.muted" class="fa fa-volume-mute"></i>
       </button>
       <input type="range" id="volume" v-model="volume" @input="updateVolume(volume)" max="1" step="0.1">
     </div>
     {{ this.volume * 100 + '%' }}
+    <div id="seekbar">
+      <input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
+    </div>
   </div>
     <!-- <v-toolbar text height=90>
       <v-btn text icon @click="toggleMute">

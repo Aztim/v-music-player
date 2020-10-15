@@ -22,10 +22,6 @@
             @updateseek="setSeek"
           />
           <br>
-          <div id="seekbar">
-            <input type="range" oninput="setPos(this.value)" id="seek" value="0" max="">
-          </div>
-          <br>
           <!-- <div class="volume_controls">
             <button id="mute" onclick="mute()"><i class="fa fa-volume-up"></i></button>
             <input type="range" id="volume" oninput="setVolume(this.value)" min="0" max="1" step="0.01" value="1">
