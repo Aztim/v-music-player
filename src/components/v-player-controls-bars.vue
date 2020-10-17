@@ -20,7 +20,7 @@
     </div>
     {{ this.volume * 100 + '%' }}
     <div id="seekbar">
-      <input type="range" :value="trackProgress" oninput="setPos(this.value)" id="seek">
+      <input type="range" :value="trackProgress" @click="updateSeek($event)" id="seek">
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@ export default {
     //   this.$emit('toggleshuffle', !this.shuffle)
     // },
     updateSeek (event) {
-      const el = document.querySelector('.progress-linear__bar')
+      const el = document.querySelector('#seek')
       const mousePos = event.offsetX
       const elWidth = el.clientWidth
       const percents = (mousePos / elWidth) * 100
