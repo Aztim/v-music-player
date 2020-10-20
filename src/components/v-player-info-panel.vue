@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div>
-      <h2>{{ trackInfo.artist }} - {{ trackInfo.title }}</h2>
+    <div class="thumbnail">
+      <img :src="trackInfo.image">
+    </div>
+    <div class="details">
+      <h2>{{ trackInfo.title }}</h2>
+      <p>{{ trackInfo.artist }}</p>
       <h3>{{trackInfo.seek | minutes}}/{{trackInfo.duration | minutes}}</h3>
     </div>
   </div>

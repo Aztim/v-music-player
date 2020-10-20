@@ -3,7 +3,6 @@
     <div class="glow">
       <div class="text-container">
         <img src="favicon.ico" alt="">
-          <!-- <br> -->
           <!-- <span class="text">Vue Music Player</span> -->
           <PlayerInfoPanel
           :trackInfo="getTrackInfo"
@@ -22,10 +21,6 @@
             @updateseek="setSeek"
           />
           <br>
-          <!-- <div class="volume_controls">
-            <button id="mute" onclick="mute()"><i class="fa fa-volume-up"></i></button>
-            <input type="range" id="volume" oninput="setVolume(this.value)" min="0" max="1" step="0.01" value="1">
-          </div> -->
           <PlayerPlaylistPanel
           :playlist="playlist"
           :selectedTrack="selectedTrack"

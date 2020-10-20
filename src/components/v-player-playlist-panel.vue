@@ -1,5 +1,20 @@
 <template>
-  <v-card height="330" :class="{playlist}">
+  <div>
+    <ul>
+      <li
+        v-for="(track, index) in playlist"
+        :key="track.title"
+        v-show="track.display"
+        :class="[{selected: track === selectedTrack}, {even: index % 2 == 0}]"
+        @click="selectTrack(track)"
+        @dblclick="playTrack()"
+      >
+        {{ index | numbers }} {{ track.artist }} - {{ track.title }}
+        <span>{{ track.howl.duration() | minutes }}</span>
+      </li>
+    </ul>
+  </div>
+  <!-- <v-card height="330" :class="{playlist}">
     <v-list>
       <v-list-item
         v-for="(track, index) in playlist"
@@ -13,7 +28,7 @@
         {{ track.howl.duration() | minutes }}
       </v-list-item>
     </v-list>
-  </v-card>
+  </v-card> -->
 </template>
 <script>
 export default {
@@ -43,6 +58,15 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  margin-top: 40px;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  background: pink;
+}
   .selected {
     background-color: orange !important;
   }
