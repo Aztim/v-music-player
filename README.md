@@ -1,4 +1,5 @@
 # vue-music-player
+https://tim-82.github.io/v-music-player/
 ![1](https://user-images.githubusercontent.com/56195913/96771337-2e993680-13ea-11eb-9a84-5b96fc76baa4.png)
 ![2](https://user-images.githubusercontent.com/56195913/96771352-335dea80-13ea-11eb-9964-30d38765e1f8.png)
 
