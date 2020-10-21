@@ -1,5 +1,5 @@
 # vue-music-player
-
+![1](https://user-images.githubusercontent.com/56195913/96770551-3efce180-13e9-11eb-9462-18d6f66b6f04.png)
 ## Project setup
 ```
 npm install
