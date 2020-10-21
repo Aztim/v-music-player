@@ -1,70 +1,41 @@
 <template>
-  <div class="container">
-    <div class="glow">
-      <div class="text-container">
-        <img src="favicon.ico" alt="">
-          <!-- <span class="text">Vue Music Player</span> -->
-          <PlayerInfoPanel
-          :trackInfo="getTrackInfo"
-          />
-          <br>
-          <PlayerControlsBars
-            :loop="loop"
-            :shuffle="shuffle"
-            :progress="progress"
-            @playtrack="play"
-            @pausetrack="pause"
-            @stoptrack="stop"
-            @skiptrack="skip"
-            @toggleloop="toggleLoop"
-            @toggleshuffle="toggleShuffle"
-            @updateseek="setSeek"
-          />
-          <br>
-          <PlayerPlaylistPanel
-          :playlist="playlist"
-          :selectedTrack="selectedTrack"
-          @selectTrack="select"
-          @playtrack="play"
-        />
-      </div>
+  <div
+    class="player"
+    :class="{'activeSongList': isActiveSongList}"
+  >
+    <div class="main">
+      <PlayerInfoPanel
+        :trackInfo="getTrackInfo"
+      />
+      <PlayerControlsBars
+        :loop="loop"
+        :shuffle="shuffle"
+        :progress="progress"
+        @playtrack="play"
+        @pausetrack="pause"
+        @stoptrack="stop"
+        @skiptrack="skip"
+        @toggleloop="toggleLoop"
+        @toggleshuffle="toggleShuffle"
+        @updateseek="setSeek"
+      />
     </div>
+    <div class="player-list">
+      <PlayerPlaylistPanel
+        :playlist="playlist"
+        :selectedTrack="selectedTrack"
+        @selectTrack="select"
+        @playtrack="play"
+        @addActiveClass= "isActiveSongList = !isActiveSongList"
+      />
+    </div>
+    <!-- <PlayerSearchBar
+      :playlist="playlist"
+    /> -->
   </div>
-  <!-- <v-app>
-    <v-content>
-      <v-container>
-        <PlayerTitleBar/>
-        <PlayerInfoPanel
-          :trackInfo="getTrackInfo"
-        />
-        <PlayerControlsBars
-          :loop="loop"
-          :shuffle="shuffle"
-          :progress="progress"
-          @playtrack="play"
-          @pausetrack="pause"
-          @stoptrack="stop"
-          @skiptrack="skip"
-          @toggleloop="toggleLoop"
-          @toggleshuffle="toggleShuffle"
-          @updateseek="setSeek"
-        />
-        <PlayerPlaylistPanel
-          :playlist="playlist"
-          :selectedTrack="selectedTrack"
-          @selectTrack="select"
-          @playtrack="play"
-        />
-        <PlayerSearchBar
-          :playlist="playlist"
-        />
-      </v-container>
-    </v-content>
-  </v-app> -->
 </template>
 
 <script>
-// import PlayerTitleBar from './components/v-player-title-bar'
 import PlayerPlaylistPanel from './components/v-player-playlist-panel'
 import PlayerControlsBars from './components/v-player-controls-bars'
 import PlayerInfoPanel from './components/v-player-info-panel'
@@ -74,31 +45,30 @@ import './assets/css/app.css'
 import { Howl } from 'howler'
 export default {
   name: 'App',
-
   components: {
-    // PlayerTitleBar,
     PlayerPlaylistPanel,
     PlayerControlsBars,
-    PlayerInfoPanel
+    PlayerInfoPanel,
     // PlayerSearchBar
   },
 
   data: () => ({
     playlist: [
-      { title: 'Star Wars(Main Theme)', artist: 'Jhon Williams', howl: null, display: true },
-      { title: 'Star Wars(The Imperial March)', artist: 'Jhon Williams', howl: null, display: true },
-      { title: 'Simpsons', artist: 'Simpsons', howl: null, display: true },
-      { title: 'Stayin Alive', artist: 'Bee Gees', howl: null, display: true },
-      { title: 'The Race', artist: 'Yello', howl: null, display: true },
-      { title: 'Ghostbusters (Ost Ghostbusters)', artist: 'Ray Parker Jr.', howl: null, display: true },
-      { title: 'The Godfather', artist: 'Nino Rota', howl: null, display: true }
+      { title: 'Star Wars(Main Theme)', artist: 'John Williams', howl: null, display: true,  src: require('@/assets/image/Star_Wars_1.jpg') },
+      { title: 'Star Wars(The Imperial March)', artist: 'John Williams', howl: null, display: true, src: require('@/assets/image/Star_Wars_2.jpg') },
+      { title: 'Simpsons', artist: 'Simpsons', howl: null, display: true, src: require('@/assets/image/Simpsons.jpg') },
+      { title: 'Stayin Alive', artist: 'Bee Gees', howl: null, display: true, src: require('@/assets/image/BeeGees.jpg') },
+      { title: 'You Can Leave Your Hat On', artist: 'Joe Cocker', howl: null, display: true, src: require('@/assets/image/Cocker.jpg') },
+      { title: 'Ghostbusters (Ost Ghostbusters)', artist: 'Ray Parker Jr.', howl: null, display: true, src: require('@/assets/image/Ghost.jpg') },
+      { title: 'The Godfather', artist: 'Nino Rota', howl: null, display: true, src: require('@/assets/image/GoodFather.jpg') }
     ],
     selectedTrack: null,
     index: 0,
     playing: false,
     loop: false,
     shuffle: false,
-    seek: 0
+    seek: 0,
+    isActiveSongList: false
   }),
   created: function () {
     this.playlist.forEach((track) => {
@@ -124,11 +94,13 @@ export default {
       return this.seek / this.currentTrack.howl.duration()
     },
     getTrackInfo () {
+      const image = this.currentTrack.src
       const artist = this.currentTrack.artist
       const title = this.currentTrack.title
       const seek = this.seek
       const duration = this.currentTrack.howl.duration()
       return {
+        image,
         artist,
         title,
         seek,
