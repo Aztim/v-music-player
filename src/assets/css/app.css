@@ -23,11 +23,17 @@ body {
   transition:all 500ms ease-in-out;
 }
 
+.player .main .thumbnail {
+  width: 320px;
+	height: 240px;
+	overflow: hidden;
+}
 .player .main .thumbnail img {
   width: 100%;
+  height: 100%;
 }
 
-/* info-panel */
+/* Info-panel */
 .player .main .details {
   text-align: center;
   padding: 15px 0px;
@@ -86,7 +92,157 @@ input::-webkit-slider-thumb {
 	display: block;
 	width: 100%;
 }
-/* Controls-bars */
+/* End of controls-bars */
+
+/* Player-list */
+.player .player-list {
+	position: absolute;
+	width: 100%;
+	margin-top:-20px;
+	height: 350px;
+	overflow-y: scroll;
+	background: rgba(0,0,0,0.8);
+	z-index:2;
+	transition:all 500ms ease-in-out;
+}
+
+.player .player-list .toggle-list {
+	position: sticky;
+	top:0px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	background: #555;
+}
+
+.player .player-list .toggle-list i.fas {
+	color: #ccc;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.player .player-list .toggle-list i.fa-angle-down {
+	display: none;
+}
+.player .player-list .toggle-list.active i.fa-angle-up {
+	display: block;
+}
+.player .player-list .toggle-list.active i.fa-angle-down {
+	display: none;
+}
+
+.player.activeSongList .player-list {
+	margin-top: -350px;
+}
+.player.activeSongList .main {
+	filter:blur(5px);
+}
+
+.player .list {
+	padding: 10px;
+}
+
+.player .list .item {
+	display: flex;
+	padding: 5px 0px;
+	border-bottom: 1px solid #222;
+	cursor: pointer;
+}
+
+.player .list .item .thumbnail {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+}
+.player .list .thumbnail img {
+	width: 100%;
+  height: 100%;
+  margin-left: 5px;
+}
+
+.player .list .item .details {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0px 10px;
+}
+
+.player .list .item .details h2 {
+	color: #eee;
+	font-size: 16px;
+}
+
+.player .list .item .details p {
+	color: #aaa;
+	font-size: 15px;
+}
+
+
+.player .player-list::-webkit-scrollbar {
+	width: 5px;
+	background: #222;
+}
+.player .player-list::-webkit-scrollbar-thumb {
+	background: #00acee;
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @-webkit-keyframes animate {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  @-moz-keyframes animate {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  @-o-keyframes animate {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  @keyframes animate {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  } */

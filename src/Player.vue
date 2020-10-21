@@ -54,13 +54,13 @@ export default {
 
   data: () => ({
     playlist: [
-      { title: 'Star Wars(Main Theme)', artist: 'John Williams', howl: null, display: true,  src: require('@/assets/image/Star_Wars_1.jpg') },
+      { title: 'Love Gun', artist: 'Kiss', howl: null, display: true,  src: require('@/assets/image/Kiss.jpg') },
       { title: 'Star Wars(The Imperial March)', artist: 'John Williams', howl: null, display: true, src: require('@/assets/image/Star_Wars_2.jpg') },
       { title: 'Simpsons', artist: 'Simpsons', howl: null, display: true, src: require('@/assets/image/Simpsons.jpg') },
       { title: 'Stayin Alive', artist: 'Bee Gees', howl: null, display: true, src: require('@/assets/image/BeeGees.jpg') },
       { title: 'You Can Leave Your Hat On', artist: 'Joe Cocker', howl: null, display: true, src: require('@/assets/image/Cocker.jpg') },
-      { title: 'Ghostbusters (Ost Ghostbusters)', artist: 'Ray Parker Jr.', howl: null, display: true, src: require('@/assets/image/Ghost.jpg') },
-      { title: 'The Godfather', artist: 'Nino Rota', howl: null, display: true, src: require('@/assets/image/GoodFather.jpg') }
+      { title: 'Immigrant_Song', artist: 'Led Zeppelin', howl: null, display: true, src: require('@/assets/image/Thor.jpg') },
+      { title: 'The Passanger', artist: 'Iggy Pop', howl: null, display: true, src: require('@/assets/image/IggyPop.jpg') }
     ],
     selectedTrack: null,
     index: 0,
@@ -182,12 +182,12 @@ export default {
       }
       this.play(index)
     },
-    toggleLoop (value) {
-      this.loop = value
-    },
-    toggleShuffle (value) {
-      this.shuffle = value
-    },
+    // toggleLoop (value) {
+    //   this.loop = value
+    // },
+    // toggleShuffle (value) {
+    //   this.shuffle = value
+    // },
     setSeek (percents) {
       const track = this.currentTrack.howl
       if (track.playing()) {
