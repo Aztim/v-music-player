@@ -3,10 +3,16 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+html {
+	background: #000000;
+}
+
 body {
   height: 100vh;
   font-family: "Raleway";
 }
+
 .player {
   position: absolute;
   top: 50%;
@@ -16,50 +22,51 @@ body {
   height: 480px;
   overflow: hidden;
 }
-.player .main {
+
+.main {
   width: 100%;
   height: 100%;
   background: #222;
   transition:all 500ms ease-in-out;
 }
 
-.player .main .thumbnail {
+.main .thumbnail {
   width: 320px;
 	height: 240px;
 	overflow: hidden;
 }
-.player .main .thumbnail img {
+.main .thumbnail img {
   width: 100%;
   height: 100%;
 }
 
 /* Info-panel */
-.player .main .details {
+.main .details {
   text-align: center;
   padding: 15px 0px;
 }
-.player .main .details h2 {
+.main .details h2 {
   font-size: 18px;
   color:#eee;
   margin-bottom: 5px;
 }
-.player .main .details p {
+.main .details p {
   font-size: 15px;
   color: #aaa;
 }
-.player .main .details h3 {
+.main .details h3 {
   font-size: 15px;
   color: #eee;
 }
 
 /* Controls-bars */
-.player .main .controls {
+.main .controls {
   display: flex;
   justify-content: space-between;
   margin:10px 30px;
 }
 
-.player .main .controls i.fa {
+.main .controls i.fa {
 	font-size:25px;
 	color: #ddd;
 }
@@ -95,7 +102,7 @@ input::-webkit-slider-thumb {
 /* End of controls-bars */
 
 /* Player-list */
-.player .player-list {
+.player-list {
 	position: absolute;
 	width: 100%;
 	margin-top:-20px;
@@ -106,7 +113,7 @@ input::-webkit-slider-thumb {
 	transition:all 500ms ease-in-out;
 }
 
-.player .player-list .toggle-list {
+.player-list .toggle-list {
 	position: sticky;
 	top:0px;
 	text-align: center;
@@ -115,26 +122,26 @@ input::-webkit-slider-thumb {
 	background: #555;
 }
 
-.player .player-list .toggle-list i.fas {
+.player-list .toggle-list i.fas {
 	color: #ccc;
 	font-size: 20px;
 	font-weight: 600;
 }
 
-.player .player-list .toggle-list i.fa-angle-down {
+.player-list .toggle-list i.fa-angle-down {
 	display: none;
 }
-.player .player-list .toggle-list.active i.fa-angle-up {
+.player-list .toggle-list.active i.fa-angle-up {
 	display: block;
 }
-.player .player-list .toggle-list.active i.fa-angle-down {
+.player-list .toggle-list.active i.fa-angle-down {
 	display: none;
 }
 
-.player.activeSongList .player-list {
+.activeSongList .player-list {
 	margin-top: -350px;
 }
-.player.activeSongList .main {
+.activeSongList .main {
 	filter:blur(5px);
 }
 
@@ -142,14 +149,14 @@ input::-webkit-slider-thumb {
 	padding: 10px;
 }
 
-.player .list .item {
+.list .item {
 	display: flex;
 	padding: 5px 0px;
 	border-bottom: 1px solid #222;
 	cursor: pointer;
 }
 
-.player .list .item .thumbnail {
+.list .item .thumbnail {
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
@@ -167,33 +174,24 @@ input::-webkit-slider-thumb {
 	padding: 0px 10px;
 }
 
-.player .list .item .details h2 {
+.list .item .details h2 {
 	color: #eee;
 	font-size: 16px;
 }
 
-.player .list .item .details p {
+.list .item .details p {
 	color: #aaa;
 	font-size: 15px;
 }
 
 
-.player .player-list::-webkit-scrollbar {
+.player-list::-webkit-scrollbar {
 	width: 5px;
 	background: #222;
 }
-.player .player-list::-webkit-scrollbar-thumb {
+.player-list::-webkit-scrollbar-thumb {
 	background: #00acee;
 }
-
-
-
-
-
-
-
-
-
 
 
 
