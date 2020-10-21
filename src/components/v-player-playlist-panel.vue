@@ -1,37 +1,41 @@
 <template>
   <div>
-    <ul>
-      <li
+    <div
+      class="toggle-list"
+      :class="{'active': isActive}"
+      @click="addActiveClass"
+    >
+      <i class="fas fa-angle-up"></i>
+      <i class="fas fa-angle-down"></i>
+    </div>
+    <div class="list">
+      <!-- Add this class {even: index % 2 == 0}  if you want zebra-style for list -->
+      <div
+        class="item"
+        :class="{selected: track === selectedTrack}"
         v-for="(track, index) in playlist"
-        :key="track.title"
-        v-show="track.display"
-        :class="[{selected: track === selectedTrack}, {even: index % 2 == 0}]"
-        @click="selectTrack(track)"
-        @dblclick="playTrack()"
+        :key="index"
       >
-        {{ index | numbers }} {{ track.artist }} - {{ track.title }}
-        <span>{{ track.howl.duration() | minutes }}</span>
-      </li>
-    </ul>
+        <div class="thumbnail">
+          <img :src="track.src" />
+        </div>
+        <div class="details"
+          @click="selectTrack(track)"
+          @dblclick="playTrack()"
+        >
+          <h2>{{ track.title }}</h2>
+          <p>{{ track.artist }} - {{ track.howl.duration() | minutes }}</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- <v-card height="330" :class="{playlist}">
-    <v-list>
-      <v-list-item
-        v-for="(track, index) in playlist"
-        :key="track.title"
-        v-show="track.display"
-        :class="[{selected: track === selectedTrack}, {even: index % 2 == 0}]">
-        <v-list-item-content @click="selectTrack(track)" @dblclick="playTrack()">
-          <v-list-item-title>{{ index | numbers }} {{ track.artist }} - {{ track.title }}</v-list-item-title>
-        </v-list-item-content>
-        <v-spacer></v-spacer>
-        {{ track.howl.duration() | minutes }}
-      </v-list-item>
-    </v-list>
-  </v-card> -->
 </template>
 <script>
 export default {
+  data: () => ({
+    isActive: false,
+  }
+  ),
   props: {
     playlist: {
       type: Array,
@@ -52,28 +56,20 @@ export default {
     },
     playTrack () {
       this.$emit('playtrack')
-    }
+    },
+    addActiveClass () {
+      this.isActive = !this.isActive
+      this.$emit('addActiveClass')
+    },
   }
 }
 </script>
 
 <style scoped>
-ul {
-  margin-top: 40px;
-}
-li {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  background: pink;
-}
   .selected {
-    background-color: orange !important;
+    background-color: #800517 !important;
   }
-  .even {
-    background-color: #DCDCDC
-  }
-  .playlist {
-    overflow: auto
-  }
+  /* .even {
+    background-color: #212F3D
+  } */
 </style>
