@@ -1,37 +1,39 @@
 <template>
-  <div
-    class="player"
-    :class="{'activeSongList': isActiveSongList}"
-  >
-    <div class="main">
-      <PlayerInfoPanel
-        :trackInfo="getTrackInfo"
-      />
-      <PlayerControlsBars
-        :loop="loop"
-        :shuffle="shuffle"
-        :progress="progress"
-        @playtrack="play"
-        @pausetrack="pause"
-        @stoptrack="stop"
-        @skiptrack="skip"
-        @toggleloop="toggleLoop"
-        @toggleshuffle="toggleShuffle"
-        @updateseek="setSeek"
-      />
-    </div>
-    <div class="player-list">
-      <PlayerPlaylistPanel
+  <div class="glow">
+    <div
+      class="player"
+      :class="{'activeSongList': isActiveSongList}"
+    >
+      <div class="main">
+        <PlayerInfoPanel
+          :trackInfo="getTrackInfo"
+        />
+        <PlayerControlsBars
+          :loop="loop"
+          :shuffle="shuffle"
+          :progress="progress"
+          @playtrack="play"
+          @pausetrack="pause"
+          @stoptrack="stop"
+          @skiptrack="skip"
+          @toggleloop="toggleLoop"
+          @toggleshuffle="toggleShuffle"
+          @updateseek="setSeek"
+        />
+      </div>
+      <div class="player-list">
+        <PlayerPlaylistPanel
+          :playlist="playlist"
+          :selectedTrack="selectedTrack"
+          @selectTrack="select"
+          @playtrack="play"
+          @addActiveClass= "isActiveSongList = !isActiveSongList"
+        />
+      </div>
+      <!-- <PlayerSearchBar
         :playlist="playlist"
-        :selectedTrack="selectedTrack"
-        @selectTrack="select"
-        @playtrack="play"
-        @addActiveClass= "isActiveSongList = !isActiveSongList"
-      />
+      /> -->
     </div>
-    <!-- <PlayerSearchBar
-      :playlist="playlist"
-    /> -->
   </div>
 </template>
 
