@@ -60,6 +60,10 @@ body {
 }
 
 /* Controls-bars */
+/* .main .volume_controls {
+	display: flex;
+	justify-content: space-between;
+} */
 .main .controls {
   display: flex;
   justify-content: space-between;
@@ -77,8 +81,13 @@ body {
   justify-content: space-around;
   color:white;
 }
+
+#mute, .volume  {
+	width: 10px;
+}
 input[type="range"] {
 	-webkit-appearance: none;
+	margin: 3px;
 	border: 1px solid #000000;
 	height: 5px;
 	vertical-align: middle;

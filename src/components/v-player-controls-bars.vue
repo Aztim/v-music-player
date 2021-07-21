@@ -10,7 +10,9 @@
         <i v-show="this.muted" class="fa fa-volume-mute"></i>
       </button>
       <input type="range" id="volume" v-model="volume" @input="updateVolume(volume)" max="1" step="0.1">
-      {{ this.volume * 100 + '%' }}
+      <div class="volume">
+        {{ this.volume * 100 + '%' }}
+      </div>
     </div>
 
     <div class="controls">
