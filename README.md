@@ -8,6 +8,18 @@
 
 
 https://romantic-thompson-338440.netlify.app/
+
+
+🆆🅷🅰🆃 🅸 🆄🆂🅴🅳 ❓
+
+Used technologies | Description |
+:---|:-------------:
+[Vue js](https://ru.vuejs.org) | The Progressive JavaScript Framework
+[Firebase](https://firebase.google.com/) | Firebase is a mobile and web application development platform
+[Localbase](https://github.com/dannyconnell/localbase) | A Firebase-Style Database ... Offline!
+[Vuedraggable](https://www.npmjs.com/package/vuedraggable) | Vue component (Vue.js 2.0) or directive (Vue.js 1.0) allowing drag-and-drop and synchronization with view model array.
+[Vuetify](https://vuetifyjs.com/en/) | A modern JavaScript utility library delivering modularity, performance & extras
+
 ## Project setup
 ```
 npm install
