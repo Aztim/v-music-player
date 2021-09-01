@@ -15,10 +15,10 @@ https://romantic-thompson-338440.netlify.app/
 Used technologies | Description |
 :---|:-------------:
 [Vue js](https://ru.vuejs.org) | The Progressive JavaScript Framework
-[Firebase](https://firebase.google.com/) | Firebase is a mobile and web application development platform
-[Localbase](https://github.com/dannyconnell/localbase) | A Firebase-Style Database ... Offline!
-[Vuedraggable](https://www.npmjs.com/package/vuedraggable) | Vue component (Vue.js 2.0) or directive (Vue.js 1.0) allowing drag-and-drop and synchronization with view model array.
-[Vuetify](https://vuetifyjs.com/en/) | A modern JavaScript utility library delivering modularity, performance & extras
+[Howler JS](https://howlerjs.com/) | Audio library for the modern web.
+[Vuetify](https://vuetifyjs.com/en/) | Material Design Framework.
+[Font Awesome](https://fontawesome.com/) | The internet's most popular icon toolkit.
+[Material Design Icons](https://materialdesignicons.com/) | Material Design Icons' growing icon collection allows designers and developers targeting various platforms to download icons in the format, color and size they need for any project.
 
 ## Project setup
 ```
